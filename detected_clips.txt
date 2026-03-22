@@ -1,0 +1,2 @@
+Detected Clip Centers (seconds):
+Clip 1: 25.02s
