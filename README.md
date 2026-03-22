@@ -1,4 +1,4 @@
-# Underwater Sound Analysis - Baltic Sea Recording
+Underwater Sound Analysis - Baltic Sea Recording
 
 ## Project Overview
 This is a complete acoustic analysis of 6 underwater sound clips extracted from a Baltic Sea recording (untitled.flac). The analysis includes broadband sound levels, 1/3 octave band frequency analysis, spectrograms, and comprehensive feature extraction.
