@@ -50,6 +50,9 @@ The quantitative summary is shown below.
 \begin{table}[H]
 \centering
 \caption{Key measurements for each clip}
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{0.95}
+\small
 \begin{tabular}{@{}cccccc@{}}
 \toprule
 Clip & Time Window (s) & Broadband Level (dB re \SI{1}{\micro\pascal}) & Dominant Freq. (Hz) & Spectral Centroid (Hz) & Crest Factor \\
@@ -62,6 +65,7 @@ Clip & Time Window (s) & Broadband Level (dB re \SI{1}{\micro\pascal}) & Dominan
 6 & 27.0--28.0 & 85.6 & 53 & 90.0 & 3.06 \\
 \bottomrule
 \end{tabular}
+\normalsize
 \end{table}
 
 Several patterns are noteworthy. First, broadband levels are tightly grouped between \SI{85.2}{\decibel\ re\ micro\pascal} and \SI{87.7}{\decibel\ re\ micro\pascal}, with a mean of \SI{86.3}{\decibel\ re\ micro\pascal}. This narrow spread implies that the source level is relatively stable during the analyzed event. Second, dominant frequency remains near \SI{53}{\hertz} in all clips, which is a strong indication of a persistent low-frequency component rather than random broadband transients. Third, the one-third octave results consistently peak around \SI{63}{\hertz}, supporting the same conclusion from a band-limited perspective. Finally, crest factors between 2.84 and 3.30 indicate moderate impulsiveness, but not strongly shock-like behavior.
