@@ -36,76 +36,17 @@
 \begin{document}
 
 \maketitle
-\tableofcontents
-\newpage
+\section*{Report}
+The recording analyzed in this assignment is a \SI{57.52}{\second} underwater audio file sampled at \SI{16000}{\hertz}. After checking the energy distribution over time, the most informative part of the signal appears in the interval from approximately \SI{20}{\second} to \SI{28}{\second}. To satisfy the requirement of six clips while preserving comparability, I extracted six \SI{1}{\second} segments from that active window: 20.0--21.0 s, 21.4--22.4 s, 22.8--23.8 s, 24.2--25.2 s, 25.6--26.6 s, and 27.0--28.0 s. This gives six clips with similar context but enough temporal separation to compare local variation.
 
-\section{Executive Summary}
-This report presents a complete acoustic analysis of six underwater sound clips extracted from a Baltic Sea recording. The workflow includes:
-\begin{itemize}
-    \item Time-domain waveform analysis,
-    \item Spectrogram-based time--frequency characterization,
-    \item Broadband level estimation in \si{\decibel\ re\ micro\pascal},
-    \item One-third octave band level analysis,
-    \item Feature extraction (RMS, peak, crest factor, dominant frequency, spectral centroid, zero-crossing rate),
-    \item Interpretation of likely source characteristics.
-\end{itemize}
-
-\section{Data Overview}
-\begin{itemize}
-    \item Source file: \texttt{untitled.flac}
-    \item Sampling rate: \SI{16000}{\hertz}
-    \item Total duration: \SI{57.52}{\second}
-    \item Analysis region: \SIrange{20}{28}{\second} (main acoustic event)
-    \item Number of clips: 6 clips, each \SI{1}{\second}
-    \item Acoustic reference: \SI{1}{\micro\pascal} (underwater acoustics standard)
-\end{itemize}
-
-Clip time windows:
-\begin{enumerate}
-    \item Clip 1: \SIrange{20.0}{21.0}{\second}
-    \item Clip 2: \SIrange{21.4}{22.4}{\second}
-    \item Clip 3: \SIrange{22.8}{23.8}{\second}
-    \item Clip 4: \SIrange{24.2}{25.2}{\second}
-    \item Clip 5: \SIrange{25.6}{26.6}{\second}
-    \item Clip 6: \SIrange{27.0}{28.0}{\second}
-\end{enumerate}
-
-\section{Methodology}
-\subsection{Signal Processing Pipeline}
-The recording was scanned for energetic events. The dominant event spans approximately \SIrange{20}{28}{\second}, from which six non-overlapping \SI{1}{\second} clips were extracted for consistent comparison.
-
-\subsection{Broadband Sound Level}
-Broadband level is computed as:
+For each clip, I computed broadband level, one-third octave band levels, and several standard descriptive features. Broadband level is calculated as
 \begin{equation}
-L_B = 20 \log_{10}\left(\frac{p_{\mathrm{RMS}}}{p_{\mathrm{ref}}}\right),
+L_B = 20\log_{10}\left(\frac{p_{\mathrm{RMS}}}{p_{\mathrm{ref}}}\right),
 \end{equation}
-where $p_{\mathrm{ref}} = \SI{1}{\micro\pascal}$.
+with the underwater reference pressure $p_{\mathrm{ref}} = \SI{1}{\micro\pascal}$. One-third octave analysis was implemented using 4th-order Butterworth band-pass filters on standard center frequencies from \SI{63}{\hertz} to \SI{10000}{\hertz}. In parallel, STFT spectrograms and Welch PSD were used to inspect time--frequency behavior and narrowband peaks. Additional indicators include RMS amplitude (V), peak amplitude (V), crest factor, dominant frequency (Hz), spectral centroid (Hz), and zero-crossing rate.
 
-\subsection{One-Third Octave Band Analysis}
-\begin{itemize}
-    \item Standard center frequencies from \SI{63}{\hertz} to \SI{10000}{\hertz}.
-    \item 4th-order Butterworth band-pass filters.
-    \item Band levels computed in \si{\decibel\ re\ micro\pascal}.
-\end{itemize}
+The quantitative summary is shown below.
 
-\subsection{Spectral Analysis}
-\begin{itemize}
-    \item STFT spectrograms with logarithmic frequency axis.
-    \item Welch PSD estimate (\num{4096}-point FFT).
-\end{itemize}
-
-\subsection{Extracted Features}
-\begin{itemize}
-    \item RMS amplitude (V),
-    \item Peak amplitude (V),
-    \item Crest factor (dimensionless),
-    \item Dominant frequency (Hz),
-    \item Spectral centroid (Hz),
-    \item Zero-crossing rate (dimensionless per frame).
-\end{itemize}
-
-\section{Results}
-\subsection{Broadband Levels and Spectral Indicators}
 \begin{table}[H]
 \centering
 \caption{Key measurements for each clip}
@@ -123,74 +64,42 @@ Clip & Time Window (s) & Broadband Level (dB re \SI{1}{\micro\pascal}) & Dominan
 \end{tabular}
 \end{table}
 
-Aggregate summary:
-\begin{itemize}
-    \item Average broadband level: \SI{86.3}{\decibel\ re\ micro\pascal}
-    \item Level range: \SIrange{85.2}{87.7}{\decibel\ re\ micro\pascal}
-    \item Dominant frequency is consistently around \SI{53}{\hertz}
-\end{itemize}
+Several patterns are noteworthy. First, broadband levels are tightly grouped between \SI{85.2}{\decibel\ re\ micro\pascal} and \SI{87.7}{\decibel\ re\ micro\pascal}, with a mean of \SI{86.3}{\decibel\ re\ micro\pascal}. This narrow spread implies that the source level is relatively stable during the analyzed event. Second, dominant frequency remains near \SI{53}{\hertz} in all clips, which is a strong indication of a persistent low-frequency component rather than random broadband transients. Third, the one-third octave results consistently peak around \SI{63}{\hertz}, supporting the same conclusion from a band-limited perspective. Finally, crest factors between 2.84 and 3.30 indicate moderate impulsiveness, but not strongly shock-like behavior.
 
-\section{Figures}
-\subsection{Waveforms}
+The figures below provide visual confirmation of the same story. The waveform panels use time in seconds and amplitude in volts. Spectrograms are presented with frequency in hertz (log scale) and color mapped in decibels. Broadband comparison is given in dB re \SI{1}{\micro\pascal}. Octave-band panels show level in dB re \SI{1}{\micro\pascal} versus frequency in hertz. PSD panels plot V$^2$/Hz versus frequency in hertz.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{01_waveforms.png}
     \caption{Time-domain waveforms of six underwater clips. X-axis: time (s), Y-axis: amplitude (V).}
 \end{figure}
 
-\subsection{Spectrograms}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{02_spectrograms.png}
     \caption{Spectrograms of six clips. Axes: time (s) and frequency (Hz, log scale). Color: power (dB).}
 \end{figure}
 
-\subsection{Broadband Level Comparison}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{03_broadband_levels.png}
     \caption{Broadband sound level comparison across clips. Unit: dB re \SI{1}{\micro\pascal}.}
 \end{figure}
 
-\subsection{One-Third Octave Band Levels}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{04_octave_bands.png}
     \caption{One-third octave band levels for each clip. X-axis: frequency (Hz), Y-axis: level (dB re \SI{1}{\micro\pascal}).}
 \end{figure}
 
-\subsection{Power Spectral Density}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{05_frequency_spectra.png}
     \caption{Welch PSD for six clips. X-axis: frequency (Hz), Y-axis: PSD (V$^2$/Hz).}
 \end{figure}
 
-\section{Interesting Findings}
-\subsection{Consistent Low-Frequency Signature}
-A strong and persistent spectral component is observed near \SI{53}{\hertz} in all clips. This repeatability indicates a stable source rather than random impulsive background noise.
+Putting all evidence together, the analyzed segment is most consistent with a quasi-continuous low-frequency source, likely mechanical in origin (for example vessel propulsion or nearby marine machinery). A biological source cannot be fully ruled out without contextual metadata, but the persistent narrow low-frequency dominance and stable level profile make a mechanical interpretation more plausible.
 
-\subsection{Moderate and Stable Acoustic Intensity}
-Broadband levels remain within a narrow interval (\SIrange{85.2}{87.7}{\decibel\ re\ micro\pascal}), suggesting relatively steady source output over the analyzed window.
-
-\subsection{Energy Concentration at Low Bands}
-The one-third octave analysis peaks around \SI{63}{\hertz}, with limited high-frequency dominance. This pattern is typical of low-frequency machinery-like underwater sources.
-
-\subsection{Temporal Behavior}
-Crest factors between 2.84 and 3.30 indicate moderate impulsiveness, but not highly transient events. Combined with the stable dominant frequency, this supports a quasi-continuous source process.
-
-\section{Interpretation and Source Hypotheses}
-Based on frequency concentration, stability, and level structure, the most plausible source category is low-frequency mechanical activity, such as vessel propulsion or industrial marine equipment. Biological contributions are possible but less consistent with the observed narrow low-frequency dominance and temporal steadiness.
-
-\section{Technical Notes and Reproducibility}
-\begin{itemize}
-    \item Main analysis script: \texttt{underwater\_acoustic\_analysis.py}
-    \item Plot units are explicitly labeled on all axes and colorbars.
-    \item Acoustic levels use underwater reference \SI{1}{\micro\pascal}.
-    \item Figures and values are regenerated automatically by running the script.
-\end{itemize}
-
-\section{Conclusion}
-All requested deliverables are covered in this LaTeX report: methods, equations, unit-aware plots, quantitative tables, and notable findings from the dataset. The analyzed event in the Baltic Sea recording is dominated by a stable low-frequency component around \SI{53}{\hertz}, with moderate broadband levels and strong energy concentration in the \SI{63}{\hertz} octave region.
+This report includes all required deliverables: unit-labeled plots, quantitative acoustic metrics, one-third octave analysis, and data-driven observations highlighting the most informative characteristics of the recording.
 
 \end{document}
